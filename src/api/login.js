@@ -6,7 +6,7 @@ import request from '@/utils/request'
  */
 export function getCode() {
   return request({
-    url: '/i-cloud-security-auth/auth/code',
+    url: '/i-cloud-auth/auth/code',
     method: 'get'
   })
 }
@@ -18,7 +18,7 @@ export function getCode() {
  */
 export function login(data) {
   return request({
-    url: '/i-cloud-security-auth/login',
+    url: '/i-cloud-auth/login',
     method: 'post',
     data
   })

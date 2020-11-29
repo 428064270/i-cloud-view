@@ -2,12 +2,14 @@ import { logout, info } from '@/api/user'
 import { login } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
+import Layout from '@/layout/index'
 
 const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    routers: []
   }
 }
 
@@ -25,11 +27,13 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROUTERS: (state, routers) => {
+    state.routers = routers
   }
 }
 
 const actions = {
-  // user login
   login({ commit }, userInfo) {
     const { username, password, code } = userInfo
     return new Promise((resolve, reject) => {
@@ -43,26 +47,14 @@ const actions = {
       })
     })
   },
-
-  // get user info
-  info({ commit, state }) {
+  info: function({ commit, state }) {
     return new Promise((resolve, reject) => {
       info(state.token).then(response => {
         const { data } = response
-
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
-
-        const { name, avatar, menus } = data
-
-        // 创建路由
-        for (let i = 0; i < menus.length; i++) {
-          menus[i].children.forEach(item => {
-            console.log(item)
-          })
-        }
-
+        const { name, avatar } = data
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         resolve(data)
