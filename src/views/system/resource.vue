@@ -6,7 +6,7 @@
           <el-col :span="6">
             <el-form-item label="资源名称" label-position="left" label-width="70px">
               <el-input v-model="search.query.name" style="min-width: 70%;width:70%;margin-right: 2%;" placeholder="资源名称" @keyup.enter.native="query()" />
-              <el-button icon="el-icon-search" style="min-width: 25%;width: 25%;" type="primary" @click="query()">搜索</el-button>
+              <el-button icon="el-icon-search" style="min-width: 25%;width: 25%;" type="primary" @click="query()" />
             </el-form-item>
           </el-col>
         </el-row>
