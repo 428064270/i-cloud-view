@@ -10,7 +10,7 @@ export function info(token) {
 
 export function logout() {
   return request({
-    url: '/i-cloud-security-auth/auth/logout',
+    url: '/i-cloud-auth/auth/logout',
     method: 'post'
   })
 }
