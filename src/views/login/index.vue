@@ -130,6 +130,7 @@ export default {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
+            this.loadCode()
             this.loading = false
           })
         } else {
