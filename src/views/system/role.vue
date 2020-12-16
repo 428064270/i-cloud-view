@@ -20,7 +20,7 @@
         <el-form ref="resource" :model="role" label-width="80px" style="height: 230px;">
           <el-col :span="22">
             <el-form-item label="资源权限">
-              <el-cascader v-model="role.optionValues" clearable style="width: 100%;" placeholder="请选择资源权限" :options="options" collapse-tags :props="{ multiple: true,checkStrictly: true }" />
+              <el-cascader v-model="role.optionValues" clearable style="width: 100%;" placeholder="请选择资源权限" :options="options" collapse-tags :props="{ multiple: true,checkStrictly: true,label:'name',value:'id' }" />
             </el-form-item>
           </el-col>
           <el-col :span="22">

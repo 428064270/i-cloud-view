@@ -20,7 +20,7 @@
         <el-form ref="resource" :model="resource" label-width="80px" style="height: 300px;">
           <el-col :span="11">
             <el-form-item label="父级资源">
-              <el-cascader v-model="resource.optionValues" style="width: 100%;" placeholder="请选择父级资源" :options="options" :props="{ checkStrictly: true }" />
+              <el-cascader v-model="resource.optionValues" style="width: 100%;" placeholder="请选择父级资源" :options="options" :props="{ checkStrictly: true, label:'name',value:'id' }" />
             </el-form-item>
           </el-col>
           <el-col :span="11">
@@ -83,10 +83,14 @@
       <el-table-column label="访问路径" align="center" property="path" />
       <el-table-column label="是否展示" align="center">
         <template slot-scope="scope">
-          {{ scope.row.display == 0?'是':'否' }}
+          {{ scope.row.type == 0? (scope.row.display == 0?'是':'否'):'--' }}
         </template>
       </el-table-column>
-      <el-table-column label="排序" align="center" property="order" />
+      <el-table-column label="排序" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.type == 0? scope.row.order:'--' }}
+        </template>
+      </el-table-column>
       <el-table-column label="图标" align="center">
         <template slot-scope="scope">
           {{ scope.row.type == 0? scope.row.icon:'--' }}
@@ -174,6 +178,7 @@ export default {
       this.resource = resource
       this.resource.optionValues = JSON.parse(resource.optionValuesJson)
       this.resource.type = resource.type.toString()
+      this.resource.display = resource.display.toString()
       this.dialogVisible = true
     },
     add() {
